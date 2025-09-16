@@ -11,9 +11,15 @@
             background-color: #000;
             color: white;
             font-family: 'Inter', sans-serif;
+            touch-action: none; /* Prevents default touch actions like pull-to-refresh */
         }
         canvas {
             display: block;
+            position: absolute; /* Allows canvas to fill the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
         #info {
             position: absolute;
@@ -159,10 +165,12 @@
         const startModal = document.getElementById('start-modal');
         const startButton = document.getElementById('start-button');
 
-        startButton.addEventListener('click', () => {
-            startModal.style.display = 'none';
-            init();
-        });
+        window.onload = function() {
+            startButton.addEventListener('click', () => {
+                startModal.style.display = 'none';
+                init();
+            });
+        };
 
         function init() {
             // Scene setup
@@ -418,4 +426,3 @@
     </script>
 </body>
 </html>
-
